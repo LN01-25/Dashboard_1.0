@@ -19,14 +19,12 @@ username = st.session_state.get('username')
 
 # Login-Status prüfen
 if authentication_status:
-
-    if st.session_state.get("active_page") == "Start":
-
-        st.title("Hättest du das gedacht.... crazy oder??")
-        st.subheader("Dicken Kuss... viel Spaß morgen auf der Arbeit")
     
     sidebar.angemeldet_als()
     sidebar.navigation()
+    if st.session_state.get("active_page") == "Start":
+        st.title("Hättest du das gedacht.... crazy oder??")
+        st.subheader("Dicken Kuss... viel Spaß morgen auf der Arbeit")
     if st.session_state.get("active_page") == "Rezeptideen":
         rezepte.rezept1()
     if st.session_state.get("active_page") == "Dateideen":
