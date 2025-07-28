@@ -9,7 +9,8 @@ def get_authenticator():
 
     # Passwörter hashen
     
-    hashed_passwords = stauth.Hasher.hash_passwords(passwords)
+    hashed_passwords = [stauth.Hasher.hash(pw) for pw in passwords]
+
 
     # Credentials-Dictionary
     credentials = {
