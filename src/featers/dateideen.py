@@ -60,9 +60,8 @@ def dateidee():
     spalte1, spalte2, spalte3 = st.columns(3)
 
     with spalte1:
-        st.header("💡 Date Ideen")
+        st.header("💡 Date Ideen 📝")
         if st.session_state.date_idee_liste:
-            st.subheader("📝 Unsere Ideen:")
             for i, idee in enumerate(st.session_state.date_idee_liste, 1):
                 st.write(f"{i}. {idee}")
         else:
