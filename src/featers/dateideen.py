@@ -28,6 +28,14 @@ def loesche_alle_ideen_db():
     cursor.execute("DELETE FROM date_ideen")
     conn.commit()
     conn.close()
+# Funktion zum Löschen einer Idee
+def loesche_idee_db(idee):
+    conn = sqlite3.connect("ideen.db")
+    curosr = conn.cursor()
+    curosr.execute("DELETE FROM date_ideen WHERE idee = ?", (idee,))
+    conn.commit()
+    conn.close()
+
 
 # Hauptfunktion
 def dateidee():
@@ -72,6 +80,16 @@ def dateidee():
                 st.session_state.zufalls_idee = random.choice(st.session_state.date_idee_liste)
             else:
                 st.session_state.zufalls_idee = None
+
+        loesch_nummer = st.number_input("Nummer der Idee, die gelöschtwerden soll:", min_value=1, step=1, format="%d")
+        if st.button("Idee löschen"):
+            index = loesch_nummer -1
+            if 0 <= index < len(st.session_state.date_idee_liste):
+                idee_zum_loeschen = st.session_state.date_idee_liste.pop(index)
+                loesche_idee_db(idee_zum_loeschen)
+                st.success(f"Idee Nummer {loesch_nummer} wurde gelöscht")
+            else:
+                st.error("Ungültige Nummer")
 
     with spalte3:
         st.header("🎯 Date-Idee")
