@@ -88,6 +88,7 @@ def dateidee():
                 idee_zum_loeschen = st.session_state.date_idee_liste.pop(index)
                 loesche_idee_db(idee_zum_loeschen)
                 st.success(f"Idee Nummer {loesch_nummer} wurde gelöscht")
+                st.rerun()
             else:
                 st.error("Ungültige Nummer")
 
